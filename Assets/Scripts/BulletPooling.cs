@@ -6,12 +6,12 @@ public class BulletPooling : MonoBehaviour
 {
     public static Transform tr; //Pool object transform. Other script is using it to set parent.
 
-    private static GameObject[] bulletPool = new GameObject[5]; //Array of bullets
+    private static GameObject[] bulletPool = new GameObject[30]; //Array of bullets
     public GameObject bulletPrefab;
 
     private Vector2 bulletPoolPosition = new Vector2(-10, -10);
 
-    public static int bulletsAmount = 5;
+    public static int bulletsAmount = 30;
     private static int actualBullet;    //indicates the next bullet that will be shot
 
     void Start()

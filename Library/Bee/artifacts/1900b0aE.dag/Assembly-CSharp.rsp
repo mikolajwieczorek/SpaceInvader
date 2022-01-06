@@ -343,7 +343,10 @@
 -r:"Library/Bee/artifacts/1900b0aE.dag/VSSettingsProvider.ref.dll"
 "Assets/Scripts/Bullet.cs"
 "Assets/Scripts/BulletPooling.cs"
+"Assets/Scripts/Enemy.cs"
 "Assets/Scripts/EnemyController.cs"
+"Assets/Scripts/EnemyPoolScript.cs"
+"Assets/Scripts/GameController.cs"
 "Assets/Scripts/PlayerController.cs"
 -langversion:8.0
 

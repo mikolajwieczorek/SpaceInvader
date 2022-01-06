@@ -8,8 +8,6 @@ public class Bullet : MonoBehaviour
 
     public Rigidbody2D rb;
 
-    private Vector2 dir = Vector2.zero; //Direction of shooting. For Enemy it's down and for player it's up
-
 	private void Start()
 	{
         bulletPoolParent = BulletPooling.tr;
@@ -18,11 +16,7 @@ public class Bullet : MonoBehaviour
 	//Function called every time a bullet gets enabled
 	void OnEnable()
     {
-        
-
         SetBulletProperties();
-
-        rb.AddForce(dir * 100);
     }
 
     //Sets bullet properties according to the parent of a bullet.
@@ -33,27 +27,44 @@ public class Bullet : MonoBehaviour
         if (transform.parent.CompareTag("Player"))
         {
             this.gameObject.layer = 7;  //PlayerBullet LayerMask
-            dir = new Vector2(0, 1);
-        }else if (transform.parent.CompareTag("Enemy"))
+            Launch(new Vector2(0, 1));
+        }else if (transform.parent.CompareTag("ShootingEnemy"))
         {
             this.gameObject.layer = 9;  //EnemyBullet LayerMask
-            dir = new Vector2(0, -1);
+            Launch(new Vector2(0, -1));
         }
+        transform.parent = null;
+    }
+
+    private void Launch(Vector2 dir) 
+    {
+        rb.AddForce(dir * 200);
     }
 
     //Handling collisions 
 	public void OnTriggerEnter2D(Collider2D collision)
 	{
         if (collision.transform.CompareTag("Player"))
-            Debug.Log("Touched player");         //Decreases player's score
-        else if (collision.transform.CompareTag("Enemy"))
-            Debug.Log("Touched Enemy");    //Kills the enemy
+            BulletTouchesPlayer();         //Decreases player's score
+        else if (collision.transform.CompareTag("RammingEnemy") || collision.transform.CompareTag("ShootingEnemy"))
+            BulletTouchesEnemy(collision.gameObject);    //Kills the enemy
 
 
         ResetBullet();  //If bullet touches anything, it gets disabled
 	}
-    
-    //Resetting button position and velocity. Also detaches it from actual parent and sets parent as Bullet Pool Object
+
+    private void BulletTouchesPlayer() 
+    {
+        Debug.Log("Dziabn¹³ mnie widzia³eœ? Dziabn¹³ mnie, œwinia!");
+    }
+
+    private void BulletTouchesEnemy(GameObject go) 
+    {
+        Debug.Log("Jeden punkt! Yay!");
+        Destroy(go);
+    }
+
+    //Resetting bullet position and velocity. Also detaches it from actual parent and sets parent as Bullet Pool Object
     private void ResetBullet() 
     {
         rb.velocity = Vector2.zero;
