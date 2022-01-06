@@ -42,4 +42,15 @@ public class SaveLoadSystem : MonoBehaviour
 		}
         return rankingPlace+1;  //Returns player's place in ranking
     }
+
+    public int[] ShowRanking() 
+    {
+        int[] rankArray = new int[10];
+
+		for (int i = 0; i < 10; i++)
+		{
+            rankArray[i] = PlayerPrefs.GetInt("highScore_" + i);
+		}
+        return rankArray;
+    }
 }
