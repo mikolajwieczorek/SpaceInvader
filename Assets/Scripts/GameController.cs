@@ -9,7 +9,7 @@ public class GameController : MonoBehaviour
 
     //Handling a game status
     public GameObject gameOverPanel;
-    public bool isGameOver;
+    public bool playerWon;
 
     //Handling score
     public Text scoreText;
@@ -32,15 +32,34 @@ public class GameController : MonoBehaviour
 
     void Awake()
     {
+        Time.timeScale = 1;
+        gameOverPanel.SetActive(false);
         Instance = GetComponent<GameController>();
     }
 
     void Update()
     {
-        if (isGameOver)
-            Time.timeScale = 0;
-
+        scoreText.text = score.ToString();
         IncreaseDifficulty();
+    }
+
+    public void EndTheGame(bool didYouWin) 
+    {
+        playerWon = didYouWin;
+        gameOverPanel.SetActive(true);
+        Time.timeScale = 0;
+    }
+
+    public void IncrementScore() 
+    {
+        score++;
+    }
+
+    public void DecrementScore() 
+    {
+        score -= totalEnemies / 4;
+        if (score < 0)
+            score = 0;
     }
 
     //Calculating game difficulty when an enemy gets killed.

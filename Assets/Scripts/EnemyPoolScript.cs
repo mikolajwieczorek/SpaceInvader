@@ -14,7 +14,7 @@ public class EnemyPoolScript : MonoBehaviour
     public int rowsOfArchers;   //Determine at how many rows from the top will shooting enemies be spawned
     private int archersLeftToSpawn = 0;
 
-    private Vector2 spawnStartPosition = new Vector2(-3, 6);
+    private Vector2 spawnStartPosition = new Vector2(-3, 5.5f);
     private Vector2 spawnPosition = Vector2.zero;
 
     void Start()

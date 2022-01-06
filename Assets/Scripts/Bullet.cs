@@ -55,12 +55,12 @@ public class Bullet : MonoBehaviour
 
     private void BulletTouchesPlayer() 
     {
-        Debug.Log("Dziabn¹³ mnie widzia³eœ? Dziabn¹³ mnie, œwinia!");
+        GameController.Instance.DecrementScore();
     }
 
     private void BulletTouchesEnemy(GameObject go) 
     {
-        Debug.Log("Jeden punkt! Yay!");
+        GameController.Instance.IncrementScore();
         Destroy(go);
     }
 

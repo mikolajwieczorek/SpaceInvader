@@ -66,6 +66,8 @@
     <Compile Include="Assets\Scripts\Enemy.cs" />
     <Compile Include="Assets\Scripts\EnemyPoolScript.cs" />
     <Compile Include="Assets\Scripts\GameController.cs" />
+    <Compile Include="Assets\Scripts\UI Scripts\GameOver.cs" />
+    <Compile Include="Assets\Scripts\UI Scripts\SaveLoadSystem.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

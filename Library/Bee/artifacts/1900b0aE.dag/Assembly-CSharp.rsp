@@ -348,6 +348,8 @@
 "Assets/Scripts/EnemyPoolScript.cs"
 "Assets/Scripts/GameController.cs"
 "Assets/Scripts/PlayerController.cs"
+"Assets/Scripts/UI Scripts/GameOver.cs"
+"Assets/Scripts/UI Scripts/SaveLoadSystem.cs"
 -langversion:8.0
 
 /deterministic

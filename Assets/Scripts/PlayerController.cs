@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
@@ -15,12 +16,20 @@ public class PlayerController : MonoBehaviour
         StartCoroutine("ShootDelay");
     }
 
-    // Update is called once per frame
-    void FixedUpdate()
-    {
-        dir = Input.GetAxisRaw("Horizontal") * moveSpeed;   //Handling user input.
+	private void Update()
+	{
+        MovingDirection(Input.GetAxisRaw("Horizontal"));
+            
+	}
 
-        rb.velocity = new Vector2(dir, rb.velocity.y);
+	void FixedUpdate()
+    {
+        rb.velocity = new Vector2(dir * moveSpeed, rb.velocity.y);
+    }
+
+    public void MovingDirection(float direction) 
+    {
+        dir = direction;
     }
 
     //Recursive function for waiting 2 seconds and shooting

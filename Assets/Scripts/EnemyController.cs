@@ -27,8 +27,15 @@ public class EnemyController : MonoBehaviour
         InvokeRepeating("MoveEnemy",startingMoveDelay, startingMoveDelay);
     }
 
-    //Moves the enemies
-    void MoveEnemy()
+	private void Update()
+	{
+        if (controller.childCount < 1)
+            GameController.Instance.EndTheGame(true);
+
+	}
+
+	//Moves the enemies
+	void MoveEnemy()
     {
         controller.position += Vector3.right * moveSpeed;
 
@@ -47,23 +54,23 @@ public class EnemyController : MonoBehaviour
                 return;
             }
 
-            if (child.position.y < -5)  //One of enemies get behind the player. That means game over
+            if (child.position.y < -4.5)  //One of enemies get behind the player. That means game over
             {
-                GameController.Instance.isGameOver = true;
+                GameController.Instance.EndTheGame(false);
             }
 
-            if(controller.childCount == 3)  //Increasing level of difficulty to maximum
+            if(controller.childCount < 4)  //Increasing level of difficulty to maximum
 			{
                 CancelInvoke();
                 InvokeRepeating("MoveEnemy", 0.1f, 0.1f);
 			}
-            
         }
 
         //This is for increasing movement speed of all enemies based on variable gameDifficulty from GameController script
         if (actualMoveDelay > startingMoveDelay * 0.3f && controller.childCount != GameController.Instance.enemiesLeft)
         {
             actualMoveDelay = GameController.Instance.gameDifficulty;
+            Debug.Log(actualMoveDelay);
             CancelInvoke();
             InvokeRepeating("MoveEnemy", actualMoveDelay, actualMoveDelay);
         }
