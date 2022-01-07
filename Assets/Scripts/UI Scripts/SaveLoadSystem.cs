@@ -23,6 +23,7 @@ public class SaveLoadSystem : MonoBehaviour
             {
                 PlayerPrefs.SetInt("highScore_" + i, 0);
             }
+            PlayerPrefs.SetInt("playsCounter", 0);
             PlayerPrefs.SetInt("firstGameRun", 1);
         }
 
@@ -40,17 +41,27 @@ public class SaveLoadSystem : MonoBehaviour
                 break;
             }
 		}
+        PlayerPrefs.SetInt("playsCounter", PlayerPrefs.GetInt("playsCounter") + 1);
         return rankingPlace+1;  //Returns player's place in ranking
+    }
+
+    public void ResetRanking()
+    {
+        PlayerPrefs.DeleteAll();
     }
 
     public int[] ShowRanking() 
     {
-        int[] rankArray = new int[10];
+        if (PlayerPrefs.HasKey("firstGameRun"))
+        {
+            int[] rankArray = new int[10];
 
-		for (int i = 0; i < 10; i++)
-		{
-            rankArray[i] = PlayerPrefs.GetInt("highScore_" + i);
-		}
-        return rankArray;
+            for (int i = 0; i < 10; i++)
+            {
+                rankArray[i] = PlayerPrefs.GetInt("highScore_" + i);
+            }
+            return rankArray;
+        }
+        return null;
     }
 }
