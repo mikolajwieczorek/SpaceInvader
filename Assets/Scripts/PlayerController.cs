@@ -7,6 +7,8 @@ public class PlayerController : MonoBehaviour
 {
     private Rigidbody2D rb;
 
+    private int shootDelay = 2;
+
     public float moveSpeed;     //Player move speed
     private float dir;    //Player moving direction
 
@@ -18,8 +20,11 @@ public class PlayerController : MonoBehaviour
 
 	private void Update()
 	{
-        //MovingDirection(Input.GetAxisRaw("Horizontal"));
-            
+        MovingDirection((int)Input.GetAxisRaw("Horizontal"));
+        if (GameController.Instance.isBoostActive)
+            shootDelay = 1;
+        else
+            shootDelay = 2;
 	}
 
 	void FixedUpdate()
@@ -37,7 +42,7 @@ public class PlayerController : MonoBehaviour
     {
         while (true)
         { 
-            yield return new WaitForSeconds(2);
+            yield return new WaitForSeconds(shootDelay);
             BulletPooling.Shoot(transform);
         } 
     }

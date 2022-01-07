@@ -21,6 +21,8 @@ public class GameController : MonoBehaviour
     [HideInInspector]
     public float gameDifficulty = 0;
 
+    public bool isBoostActive = false;
+
     [HideInInspector]
     public float minShootDelay = 0;
     [HideInInspector]

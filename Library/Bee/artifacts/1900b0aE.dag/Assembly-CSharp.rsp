@@ -341,6 +341,7 @@
 -r:"Library/Bee/artifacts/1900b0aE.dag/UnityEditor.UI.ref.dll"
 -r:"Library/Bee/artifacts/1900b0aE.dag/UnityEngine.UI.ref.dll"
 -r:"Library/Bee/artifacts/1900b0aE.dag/VSSettingsProvider.ref.dll"
+"Assets/Scripts/BoostController.cs"
 "Assets/Scripts/Bullet.cs"
 "Assets/Scripts/BulletPooling.cs"
 "Assets/Scripts/Enemy.cs"
